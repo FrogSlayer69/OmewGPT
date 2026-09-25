@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.omewgpt;
 
 import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
@@ -74,9 +74,9 @@ public class MainActivity extends AppCompatActivity {
     private String currentSessionId = UUID.randomUUID().toString();
 
     // YOUR KEYS
-    private final String SUPABASE_URL = "";
-    private final String SUPABASE_KEY = "";
-    private final String GEMINI_KEY = "";
+    private final String SUPABASE_URL = BuildConfig.SUPABASE_URL;
+    private final String SUPABASE_KEY = BuildConfig.SUPABASE_KEY;
+    private final String GEMINI_KEY = BuildConfig.GEMINI_KEY;
 
     private SwitchCompat tempChatSwitch;
     private DrawerLayout drawerLayout;

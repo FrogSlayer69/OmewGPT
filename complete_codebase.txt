@@ -1,0 +1,2257 @@
+==> .gitignore <==
+*.iml
+.gradle
+/local.properties
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+local.properties
+
+==> .idea/.gitignore <==
+# Default ignored files
+/shelf/
+/workspace.xml
+
+==> .idea/.name <==
+My Application
+==> .idea/AndroidProjectSystem.xml <==
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AndroidProjectSystem">
+    <option name="providerId" value="com.android.tools.idea.GradleProjectSystem" />
+  </component>
+</project>
+==> .idea/compiler.xml <==
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel target="25" />
+  </component>
+</project>
+==> .idea/deploymentTargetSelector.xml <==
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="deploymentTargetSelector">
+    <selectionStates>
+      <SelectionState runConfigName="app">
+        <option name="selectionMode" value="DROPDOWN" />
+        <DropdownSelection timestamp="2026-09-22T15:04:39.514402997Z">
+          <Target type="DEFAULT_BOOT">
+            <handle>
+              <DeviceId pluginId="Wireless" identifier="serviceName=adb-R9JR100PZ3J-BlTiFR" />
+            </handle>
+          </Target>
+        </DropdownSelection>
+        <DialogSelection />
+      </SelectionState>
+    </selectionStates>
+  </component>
+</project>
+==> .idea/gradle.xml <==
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleMigrationSettings" migrationVersion="1" />
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="testRunner" value="CHOOSE_PER_TEST" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/app" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>
+==> .idea/misc.xml <==
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_25" default="true" project-jdk-name="jbr-25" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
+==> .idea/runConfigurations.xml <==
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="RunConfigurationProducerService">
+    <option name="ignoredProducers">
+      <set>
+        <option value="com.intellij.execution.junit.AbstractAllInDirectoryConfigurationProducer" />
+        <option value="com.intellij.execution.junit.AllInPackageConfigurationProducer" />
+        <option value="com.intellij.execution.junit.PatternConfigurationProducer" />
+        <option value="com.intellij.execution.junit.TestInClassConfigurationProducer" />
+        <option value="com.intellij.execution.junit.UniqueIdConfigurationProducer" />
+        <option value="com.intellij.execution.junit.testDiscovery.JUnitTestDiscoveryConfigurationProducer" />
+        <option value="org.jetbrains.kotlin.idea.junit.KotlinJUnitRunConfigurationProducer" />
+        <option value="org.jetbrains.kotlin.idea.junit.KotlinPatternConfigurationProducer" />
+      </set>
+    </option>
+  </component>
+</project>
+==> .idea/vcs.xml <==
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="VcsDirectoryMappings">
+    <mapping directory="$PROJECT_DIR$" vcs="Git" />
+  </component>
+</project>
+==> app/.gitignore <==
+/build
+==> app/build.gradle.kts <==
+plugins {
+    alias(libs.plugins.android.application)
+}
+
+android {
+    namespace = "com.example.myapplication"
+    compileSdk {
+        version = release(37)
+    }
+
+    defaultConfig {
+        applicationId = "com.example.myapplication"
+        minSdk = 23
+        targetSdk = 37
+        versionCode = 1
+        versionName = "1.0"
+
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            optimization {
+                enable = false
+            }
+        }
+    }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
+    }
+    packaging {
+        resources {
+            excludes += "/META-INF/INDEX.LIST"
+            excludes += "/META-INF/DEPENDENCIES"
+        }
+    }
+}
+
+dependencies {
+    implementation("io.noties.markwon:core:4.6.2")
+    implementation("com.google.genai:google-genai:1.42.0")
+    implementation(libs.androidx.activity.ktx)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.material)
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
+    androidTestImplementation(libs.androidx.junit)
+    implementation("com.squareup.okhttp3:okhttp:4.12.0")
+    implementation("androidx.cardview:cardview:1.0.0")
+    implementation("com.github.bumptech.glide:glide:4.16.0")
+}
+==> app/src/androidTest/java/com/example/myapplication/ExampleInstrumentedTest.kt <==
+package com.example.myapplication
+
+import androidx.test.platform.app.InstrumentationRegistry
+import androidx.test.ext.junit.runners.AndroidJUnit4
+
+import org.junit.Test
+import org.junit.runner.RunWith
+
+import org.junit.Assert.*
+
+/**
+ * Instrumented test, which will execute on an Android device.
+ *
+ * See [testing documentation](http://d.android.com/tools/testing).
+ */
+@RunWith(AndroidJUnit4::class)
+class ExampleInstrumentedTest {
+    @Test
+    fun useAppContext() {
+        // Context of the app under test.
+        val appContext = InstrumentationRegistry.getInstrumentation().targetContext
+        assertEquals("com.example.myapplication", appContext.packageName)
+    }
+}
+==> app/src/main/AndroidManifest.xml <==
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.MyApplication">
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
+==> app/src/main/java/com/example/myapplication/MainActivity.java <==
+package com.example.myapplication;
+
+import android.animation.ArgbEvaluator;
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.net.Uri;
+import android.os.Bundle;
+import android.speech.RecognizerIntent;
+import android.util.Base64;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.activity.EdgeToEdge;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SwitchCompat;
+import androidx.core.view.GravityCompat;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+
+import com.bumptech.glide.Glide;
+import com.google.genai.Client;
+import com.google.genai.types.Blob;
+import com.google.genai.types.Content;
+import com.google.genai.types.GenerateContentResponse;
+import com.google.genai.types.Part;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.UUID;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import io.noties.markwon.Markwon;
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
+
+public class MainActivity extends AppCompatActivity {
+
+    private Client client;
+    private final List<String> conversation = new ArrayList<>();
+
+    // Includes the custom Omew cat personality!
+    private final String SYSTEM_PROMPT = "You are Omew, an incredibly cute and helpful cat AI assistant! You love to say 'nyaaa' and act playfully. Explain things clearly, simply, and adorably. IMPORTANT: When providing step-by-step guides, timelines, or procedures, you MUST wrap them in XML format like this: <Sequence><Step title=\"Step Name\">Markdown Content here</Step></Sequence>.";
+
+    private final OkHttpClient clientOkHttp = new OkHttpClient();
+    private String currentSessionId = UUID.randomUUID().toString();
+
+    // YOUR KEYS
+    private final String SUPABASE_URL = "";
+    private final String SUPABASE_KEY = "";
+    private final String GEMINI_KEY = "";
+
+    private SwitchCompat tempChatSwitch;
+    private DrawerLayout drawerLayout;
+    private LinearLayout chatContainer;
+    private Markwon markwon;
+
+    private LinearLayout welcomeScreen;
+    private EditText messageInput;
+    private Button sendButton;
+
+    private LinearLayout pinnedContainer;
+    private TextView pinnedText;
+
+    private LinearLayout imagePreviewContainer;
+    private ImageView imagePreview;
+    private Uri selectedImageUri = null;
+
+    private final ActivityResultLauncher<Intent> speechRecognizerLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                if (result.getResultCode() == RESULT_OK && result.getData() != null) {
+                    ArrayList<String> data = result.getData().getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+                    if (data != null && !data.isEmpty()) {
+                        messageInput.append(data.get(0) + " ");
+                    }
+                }
+            }
+    );
+
+    private final ActivityResultLauncher<String> pickMediaLauncher = registerForActivityResult(
+            new ActivityResultContracts.GetContent(),
+            uri -> {
+                if (uri != null) {
+                    selectedImageUri = uri;
+                    imagePreview.setImageURI(uri);
+                    imagePreviewContainer.setVisibility(View.VISIBLE);
+                }
+            }
+    );
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        client = Client.builder().apiKey(GEMINI_KEY).build();
+        markwon = Markwon.create(this);
+
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_main);
+
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+            int left = insets.getInsets(WindowInsetsCompat.Type.systemBars() | WindowInsetsCompat.Type.ime()).left;
+            int top = insets.getInsets(WindowInsetsCompat.Type.systemBars() | WindowInsetsCompat.Type.ime()).top;
+            int right = insets.getInsets(WindowInsetsCompat.Type.systemBars() | WindowInsetsCompat.Type.ime()).right;
+            int bottom = insets.getInsets(WindowInsetsCompat.Type.systemBars() | WindowInsetsCompat.Type.ime()).bottom;
+            v.setPadding(left, top, right, bottom);
+            return insets;
+        });
+
+        drawerLayout = findViewById(R.id.drawerLayout);
+        chatContainer = findViewById(R.id.chatContainer);
+        tempChatSwitch = findViewById(R.id.tempChatSwitch);
+        welcomeScreen = findViewById(R.id.welcomeScreen);
+
+        ImageButton menuButton = findViewById(R.id.menuButton);
+        ImageButton newChatButton = findViewById(R.id.newChatButton);
+        ImageButton attachButton = findViewById(R.id.attachButton);
+        ImageButton micButton = findViewById(R.id.micButton);
+        TextView titleText = findViewById(R.id.titleText);
+
+        messageInput = findViewById(R.id.messageInput);
+        sendButton = findViewById(R.id.sendButton);
+
+        pinnedContainer = findViewById(R.id.pinnedContainer);
+        pinnedText = findViewById(R.id.pinnedText);
+        findViewById(R.id.unpinButton).setOnClickListener(v -> pinnedContainer.setVisibility(View.GONE));
+
+        imagePreviewContainer = findViewById(R.id.imagePreviewContainer);
+        imagePreview = findViewById(R.id.imagePreview);
+        findViewById(R.id.removeImageButton).setOnClickListener(v -> clearAttachment());
+
+        attachButton.setOnClickListener(v -> pickMediaLauncher.launch("image/*"));
+
+        micButton.setOnClickListener(v -> {
+            Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+            intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+            try {
+                speechRecognizerLauncher.launch(intent);
+            } catch (Exception e) {
+                Toast.makeText(this, "Voice typing not supported on this device", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        menuButton.setOnClickListener(v -> {
+            loadSidebarHistory();
+            drawerLayout.openDrawer(GravityCompat.START);
+        });
+
+        newChatButton.setOnClickListener(v -> {
+            conversation.clear();
+            chatContainer.removeAllViews();
+            messageInput.setText("");
+            pinnedContainer.setVisibility(View.GONE);
+            clearAttachment();
+            welcomeScreen.setVisibility(View.VISIBLE);
+            currentSessionId = UUID.randomUUID().toString();
+        });
+
+        tempChatSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            conversation.clear();
+            chatContainer.removeAllViews();
+            messageInput.setText("");
+            pinnedContainer.setVisibility(View.GONE);
+            clearAttachment();
+            welcomeScreen.setVisibility(View.VISIBLE);
+            currentSessionId = UUID.randomUUID().toString();
+
+            if (isChecked) {
+                titleText.setText("Temporary Chat");
+                titleText.setTextColor(Color.parseColor("#AAAAAA"));
+                addSystemMessage("Memory disabled. This chat won't appear in history.");
+            } else {
+                titleText.setText("OmewGPT");
+                titleText.setTextColor(Color.WHITE);
+                addSystemMessage("Memory enabled. Chat will be saved to cloud.");
+            }
+        });
+
+        sendButton.setOnClickListener(v -> {
+            String message = messageInput.getText().toString();
+
+            if (!message.trim().isEmpty() || selectedImageUri != null) {
+
+                welcomeScreen.setVisibility(View.GONE);
+
+                View userView = getLayoutInflater().inflate(R.layout.user_message, chatContainer, false);
+                TextView userMessageView = userView.findViewById(R.id.messageText);
+                androidx.cardview.widget.CardView imageCard = userView.findViewById(R.id.messageImageCard);
+                ImageView messageImage = userView.findViewById(R.id.messageImage);
+
+                userMessageView.setText(message);
+                if (message.trim().isEmpty()) {
+                    userMessageView.setVisibility(View.GONE);
+                }
+
+                if (selectedImageUri != null) {
+                    messageImage.setImageURI(selectedImageUri);
+                    imageCard.setVisibility(View.VISIBLE);
+                }
+
+                userView.findViewById(R.id.btnCopyUser).setOnClickListener(view -> copyToClipboard(message));
+                userView.findViewById(R.id.btnEdit).setOnClickListener(view -> messageInput.setText(message));
+
+                chatContainer.addView(userView);
+                scrollToBottom();
+                messageInput.setText("");
+
+                Uri currentUri = selectedImageUri;
+                clearAttachment();
+
+                String displayMessage = currentUri != null ? "[Image Attached]\n" + message : message;
+
+                new Thread(() -> {
+                    try {
+                        String base64Image = "";
+                        byte[] imageBytes = null;
+
+                        if (currentUri != null) {
+                            InputStream inputStream = getContentResolver().openInputStream(currentUri);
+                            Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+                            if (bitmap != null) {
+                                float maxDim = 800f;
+                                float scale = Math.min(maxDim / bitmap.getWidth(), maxDim / bitmap.getHeight());
+                                Bitmap resized = scale < 1 ? Bitmap.createScaledBitmap(bitmap, (int) (bitmap.getWidth() * scale), (int) (bitmap.getHeight() * scale), true) : bitmap;
+
+                                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                                resized.compress(Bitmap.CompressFormat.JPEG, 70, baos);
+                                imageBytes = baos.toByteArray();
+
+                                base64Image = Base64.encodeToString(imageBytes, Base64.NO_WRAP);
+                            }
+                        }
+
+                        String conversationEntry = !base64Image.isEmpty() ? "<img src=\"" + base64Image + "\">\n" + message : message;
+                        conversation.add("User: " + conversationEntry);
+
+                        StringBuilder promptHistory = new StringBuilder();
+                        for (String s : conversation) {
+                            promptHistory.append(s.replaceAll("<img src=\".*?\">\n?", "[Image Attached] ")).append("\n");
+                        }
+
+                        String textPrompt = SYSTEM_PROMPT + "\n\n" + promptHistory.toString();
+
+                        runOnUiThread(() -> {
+                            View thinkingView = getLayoutInflater().inflate(R.layout.thinking_bubble, chatContainer, false);
+                            thinkingView.setTag("thinkingContainer");
+
+                            ImageView thinkingGif = thinkingView.findViewById(R.id.thinkingGif);
+                            TextView thinkingText = thinkingView.findViewById(R.id.thinkingText);
+
+                            Glide.with(MainActivity.this)
+                                    .asGif()
+                                    .load("https://media3.giphy.com/avatars/arisa0905m/4Sktt2kbFY8n.gif")
+                                    .into(thinkingGif);
+
+                            ObjectAnimator colorAnim = ObjectAnimator.ofInt(thinkingText, "textColor", Color.parseColor("#444444"), Color.parseColor("#FFFFFF"));
+                            colorAnim.setDuration(800);
+                            colorAnim.setEvaluator(new ArgbEvaluator());
+                            colorAnim.setRepeatCount(ValueAnimator.INFINITE);
+                            colorAnim.setRepeatMode(ValueAnimator.REVERSE);
+                            colorAnim.start();
+
+                            chatContainer.addView(thinkingView);
+                            scrollToBottom();
+
+                            List<String> thinkingStates = Arrays.asList("Analyzing request...", "Searching knowledge...", "Structuring answer...");
+                            Timer timer = new Timer();
+                            timer.scheduleAtFixedRate(new TimerTask() {
+                                int tick = 0;
+                                @Override
+                                public void run() {
+                                    runOnUiThread(() -> {
+                                        if (thinkingView.getParent() != null) {
+                                            thinkingText.setText(thinkingStates.get(tick % thinkingStates.size()));
+                                            tick++;
+                                        } else {
+                                            timer.cancel();
+                                            colorAnim.cancel();
+                                        }
+                                    });
+                                }
+                            }, 0, 1500);
+                        });
+
+                        String aiResponse;
+
+                        if (imageBytes != null) {
+                            Blob blob = Blob.builder()
+                                    .data(imageBytes)
+                                    .mimeType("image/jpeg")
+                                    .build();
+
+                            Part imagePart = Part.builder().inlineData(blob).build();
+                            Part textPart = Part.builder().text(textPrompt).build();
+
+                            Content content = Content.builder()
+                                    .parts(Arrays.asList(imagePart, textPart))
+                                    .build();
+
+                            GenerateContentResponse response = client.models.generateContent("gemini-3.6-flash", content, null);
+                            aiResponse = response.text() != null ? response.text() : "";
+                        } else {
+                            GenerateContentResponse response = client.models.generateContent("gemini-3.6-flash", textPrompt, null);
+                            aiResponse = response.text() != null ? response.text() : "";
+                        }
+
+                        conversation.add("AI: " + aiResponse);
+                        saveChatToDatabase(false);
+
+                        final String finalAiResponse = aiResponse;
+
+                        runOnUiThread(() -> {
+                            View thinkingChild = null;
+                            for (int i = 0; i < chatContainer.getChildCount(); i++) {
+                                View child = chatContainer.getChildAt(i);
+                                if ("thinkingContainer".equals(child.getTag())) {
+                                    thinkingChild = child;
+                                    break;
+                                }
+                            }
+                            if (thinkingChild != null) {
+                                chatContainer.removeView(thinkingChild);
+                            }
+
+                            View aiView = getLayoutInflater().inflate(R.layout.ai_message, chatContainer, false);
+                            LinearLayout bubbleContainer = aiView.findViewById(R.id.bubbleContentContainer);
+                            renderRichAIResponse(bubbleContainer, finalAiResponse);
+
+                            aiView.findViewById(R.id.actionRow).setVisibility(View.VISIBLE);
+                            aiView.findViewById(R.id.btnCopyAi).setOnClickListener(view -> copyToClipboard(finalAiResponse.replaceAll("<.*?>", "")));
+                            aiView.findViewById(R.id.btnPin).setOnClickListener(view -> pinMessage(finalAiResponse.replaceAll("<.*?>", "")));
+                            aiView.findViewById(R.id.btnRedo).setOnClickListener(view -> {
+                                String lastPrompt = null;
+                                for (int j = conversation.size() - 1; j >= 0; j--) {
+                                    if (conversation.get(j).startsWith("User: ")) {
+                                        lastPrompt = conversation.get(j).substring(6);
+                                        break;
+                                    }
+                                }
+                                if (lastPrompt != null) {
+                                    String cleanPrompt = lastPrompt.replaceAll("<img src=\".*?\">\n?", "").replace("[Image Attached]\n", "");
+                                    messageInput.setText(cleanPrompt);
+                                    sendButton.performClick();
+                                }
+                            });
+
+                            chatContainer.addView(aiView);
+                            scrollToBottom();
+                        });
+                    } catch (Exception e) {
+                        runOnUiThread(() -> {
+                            View thinkingChild = null;
+                            for (int i = 0; i < chatContainer.getChildCount(); i++) {
+                                View child = chatContainer.getChildAt(i);
+                                if ("thinkingContainer".equals(child.getTag())) {
+                                    thinkingChild = child;
+                                    break;
+                                }
+                            }
+                            if (thinkingChild != null) {
+                                chatContainer.removeView(thinkingChild);
+                            }
+                            addSystemMessage("Connection Error: " + e.getMessage());
+                        });
+                    }
+                }).start();
+            }
+        });
+    }
+
+    private void clearAttachment() {
+        selectedImageUri = null;
+        imagePreviewContainer.setVisibility(View.GONE);
+    }
+
+    private void renderRichAIResponse(LinearLayout parentBubble, String rawText) {
+        parentBubble.removeAllViews();
+
+        String cleanedText = rawText.replace("<Sequence>", "").replace("</Sequence>", "");
+        Pattern pattern = Pattern.compile("<Step title=\"(.*?)\">(.*?)</Step>", Pattern.DOTALL);
+        Matcher matcher = pattern.matcher(cleanedText);
+
+        int lastMatchEnd = 0;
+        int stepCount = 1;
+
+        while (matcher.find()) {
+            String prefixText = cleanedText.substring(lastMatchEnd, matcher.start()).trim();
+            if (!prefixText.isEmpty()) {
+                TextView tv = new TextView(this);
+                tv.setTextColor(Color.BLACK);
+                tv.setTextSize(17f);
+                markwon.setMarkdown(tv, prefixText);
+                parentBubble.addView(tv);
+            }
+
+            View stepView = getLayoutInflater().inflate(R.layout.step_item, parentBubble, false);
+            TextView stepNum = stepView.findViewById(R.id.stepNumber);
+            TextView stepTitle = stepView.findViewById(R.id.stepTitle);
+            TextView stepBody = stepView.findViewById(R.id.stepBody);
+
+            stepNum.setText(String.valueOf(stepCount));
+            stepTitle.setText(matcher.group(1) != null ? matcher.group(1) : "");
+            markwon.setMarkdown(stepBody, matcher.group(2) != null ? matcher.group(2).trim() : "");
+
+            parentBubble.addView(stepView);
+
+            lastMatchEnd = matcher.end();
+            stepCount++;
+        }
+
+        String suffixText = cleanedText.substring(lastMatchEnd).trim();
+        if (!suffixText.isEmpty()) {
+            TextView tv = new TextView(this);
+            tv.setTextColor(Color.BLACK);
+            tv.setTextSize(17f);
+            markwon.setMarkdown(tv, suffixText);
+            parentBubble.addView(tv);
+        }
+    }
+
+    private void pinMessage(String text) {
+        markwon.setMarkdown(pinnedText, text);
+        pinnedContainer.setVisibility(View.VISIBLE);
+    }
+
+    private void copyToClipboard(String text) {
+        ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+        ClipData clip = ClipData.newPlainText("Copied Chat", text);
+        clipboard.setPrimaryClip(clip);
+        Toast.makeText(this, "Copied to clipboard", Toast.LENGTH_SHORT).show();
+    }
+
+    private void addSystemMessage(String text) {
+        runOnUiThread(() -> {
+            View sysView = getLayoutInflater().inflate(R.layout.system_message, chatContainer, false);
+            TextView sysText = sysView.findViewById(R.id.messageText);
+            sysText.setText(text);
+            chatContainer.addView(sysView);
+            scrollToBottom();
+        });
+    }
+
+    private void scrollToBottom() {
+        ScrollView chatScroll = findViewById(R.id.chatScroll);
+        chatScroll.post(() -> chatScroll.fullScroll(ScrollView.FOCUS_DOWN));
+    }
+
+    private void saveChatToDatabase(boolean isPinned) {
+        if (tempChatSwitch.isChecked() || conversation.isEmpty()) return;
+
+        new Thread(() -> {
+            try {
+                JSONArray jsonArray = new JSONArray();
+                for (String msg : conversation) {
+                    jsonArray.put(msg);
+                }
+
+                String firstMessage = conversation.get(0).replace("User: ", "")
+                        .replaceAll("<img src=\".*?\">\n?", "")
+                        .replace("[Image Attached]\n", "")
+                        .trim();
+
+                String title = firstMessage.length() > 30 ? firstMessage.substring(0, 30) + "..." : (firstMessage.isEmpty() ? "Image Upload" : firstMessage);
+
+                JSONObject jsonObject = new JSONObject();
+                jsonObject.put("session_id", currentSessionId);
+                jsonObject.put("title", title);
+                jsonObject.put("history", jsonArray);
+                jsonObject.put("is_pinned", isPinned);
+
+                MediaType mediaType = MediaType.parse("application/json; charset=utf-8");
+                RequestBody body = RequestBody.create(jsonObject.toString(), mediaType);
+
+                Request request = new Request.Builder()
+                        .url(SUPABASE_URL + "/rest/v1/chat_sessions?on_conflict=session_id")
+                        .post(body)
+                        .addHeader("apikey", SUPABASE_KEY)
+                        .addHeader("Authorization", "Bearer " + SUPABASE_KEY)
+                        .addHeader("Prefer", "resolution=merge-duplicates")
+                        .build();
+
+                clientOkHttp.newCall(request).execute();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }).start();
+    }
+
+    private void togglePinStatus(String sessionId, boolean pinStatus) {
+        new Thread(() -> {
+            try {
+                JSONObject jsonObject = new JSONObject();
+                jsonObject.put("is_pinned", pinStatus);
+
+                MediaType mediaType = MediaType.parse("application/json; charset=utf-8");
+                RequestBody body = RequestBody.create(jsonObject.toString(), mediaType);
+
+                Request request = new Request.Builder()
+                        .url(SUPABASE_URL + "/rest/v1/chat_sessions?session_id=eq." + sessionId)
+                        .patch(body)
+                        .addHeader("apikey", SUPABASE_KEY)
+                        .addHeader("Authorization", "Bearer " + SUPABASE_KEY)
+                        .build();
+
+                try (Response response = clientOkHttp.newCall(request).execute()) {
+                    if (response.isSuccessful()) {
+                        loadSidebarHistory();
+                    }
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }).start();
+    }
+
+    private void loadSidebarHistory() {
+        LinearLayout historyContainer = findViewById(R.id.historyContainer);
+        LinearLayout pinnedHistoryContainer = findViewById(R.id.pinnedHistoryContainer);
+        TextView pinnedHeader = findViewById(R.id.pinnedHeader);
+        View historySeparator = findViewById(R.id.historySeparator);
+
+        new Thread(() -> {
+            try {
+                Request request = new Request.Builder()
+                        .url(SUPABASE_URL + "/rest/v1/chat_sessions?select=session_id,title,history,is_pinned&order=created_at.desc")
+                        .get()
+                        .addHeader("apikey", SUPABASE_KEY)
+                        .addHeader("Authorization", "Bearer " + SUPABASE_KEY)
+                        .build();
+
+                try (Response response = clientOkHttp.newCall(request).execute()) {
+                    if (response.isSuccessful() && response.body() != null) {
+                        String responseData = response.body().string();
+                        JSONArray jsonArray = new JSONArray(responseData);
+
+                        runOnUiThread(() -> {
+                            historyContainer.removeAllViews();
+                            pinnedHistoryContainer.removeAllViews();
+                            boolean hasPinned = false;
+
+                            try {
+                                for (int i = 0; i < jsonArray.length(); i++) {
+                                    JSONObject sessionObj = jsonArray.getJSONObject(i);
+                                    String sessionId = sessionObj.getString("session_id");
+                                    String title = sessionObj.getString("title");
+                                    JSONArray historyArray = sessionObj.getJSONArray("history");
+                                    boolean isPinned = sessionObj.optBoolean("is_pinned", false);
+
+                                    View sidebarItem = getLayoutInflater().inflate(R.layout.sidebar_item, null);
+                                    TextView titleText = sidebarItem.findViewById(R.id.sidebarTitle);
+                                    ImageButton pinBtn = sidebarItem.findViewById(R.id.sidebarPinBtn);
+
+                                    titleText.setText(title);
+
+                                    if (isPinned) {
+                                        pinBtn.setColorFilter(Color.parseColor("#6750A4"));
+                                        hasPinned = true;
+                                        pinnedHistoryContainer.addView(sidebarItem);
+                                    } else {
+                                        historyContainer.addView(sidebarItem);
+                                    }
+
+                                    titleText.setOnClickListener(v -> loadPastConversation(sessionId, historyArray));
+                                    pinBtn.setOnClickListener(v -> togglePinStatus(sessionId, !isPinned));
+                                }
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+
+                            if (hasPinned) {
+                                pinnedHeader.setVisibility(View.VISIBLE);
+                                historySeparator.setVisibility(View.VISIBLE);
+                                pinnedHistoryContainer.setVisibility(View.VISIBLE);
+                            } else {
+                                pinnedHeader.setVisibility(View.GONE);
+                                historySeparator.setVisibility(View.GONE);
+                                pinnedHistoryContainer.setVisibility(View.GONE);
+                            }
+                        });
+                    }
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }).start();
+    }
+
+    private void loadPastConversation(String sessionId, JSONArray historyArray) {
+        currentSessionId = sessionId;
+        conversation.clear();
+        chatContainer.removeAllViews();
+        pinnedContainer.setVisibility(View.GONE);
+        welcomeScreen.setVisibility(View.GONE);
+        clearAttachment();
+
+        try {
+            for (int i = 0; i < historyArray.length(); i++) {
+                String message = historyArray.getString(i);
+                conversation.add(message);
+
+                if (message.startsWith("User: ")) {
+                    View userView = getLayoutInflater().inflate(R.layout.user_message, chatContainer, false);
+                    TextView userMessageView = userView.findViewById(R.id.messageText);
+                    androidx.cardview.widget.CardView imageCard = userView.findViewById(R.id.messageImageCard);
+                    ImageView messageImage = userView.findViewById(R.id.messageImage);
+
+                    String msgText = message.substring(6); // Remove "User: "
+
+                    Matcher matcher = Pattern.compile("<img src=\"(.*?)\">\n?").matcher(msgText);
+                    if (matcher.find()) {
+                        String b64 = matcher.group(1);
+                        try {
+                            byte[] decodedString = Base64.decode(b64, Base64.DEFAULT);
+                            Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+                            messageImage.setImageBitmap(decodedByte);
+                            imageCard.setVisibility(View.VISIBLE);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                        msgText = matcher.replaceFirst("");
+                    }
+
+                    msgText = msgText.replace("[Image Attached]\n", "");
+
+                    userMessageView.setText(msgText);
+                    if (msgText.trim().isEmpty()) {
+                        userMessageView.setVisibility(View.GONE);
+                    }
+
+                    String finalMsgText = msgText;
+                    userView.findViewById(R.id.btnCopyUser).setOnClickListener(v -> copyToClipboard(finalMsgText));
+                    userView.findViewById(R.id.btnEdit).setOnClickListener(v -> messageInput.setText(finalMsgText));
+
+                    chatContainer.addView(userView);
+                } else if (message.startsWith("AI: ")) {
+                    View aiView = getLayoutInflater().inflate(R.layout.ai_message, chatContainer, false);
+                    String msgText = message.substring(4); // Remove "AI: "
+
+                    LinearLayout bubbleContainer = aiView.findViewById(R.id.bubbleContentContainer);
+                    renderRichAIResponse(bubbleContainer, msgText);
+
+                    aiView.findViewById(R.id.btnCopyAi).setOnClickListener(v -> copyToClipboard(msgText.replaceAll("<.*?>", "")));
+                    aiView.findViewById(R.id.btnPin).setOnClickListener(v -> pinMessage(msgText.replaceAll("<.*?>", "")));
+                    aiView.findViewById(R.id.btnRedo).setOnClickListener(v -> {
+                        String lastPrompt = null;
+                        for (int j = conversation.size() - 1; j >= 0; j--) {
+                            if (conversation.get(j).startsWith("User: ")) {
+                                lastPrompt = conversation.get(j).substring(6);
+                                break;
+                            }
+                        }
+                        if (lastPrompt != null) {
+                            String cleanPrompt = lastPrompt.replaceAll("<img src=\".*?\">\n?", "").replace("[Image Attached]\n", "");
+                            messageInput.setText(cleanPrompt);
+                            sendButton.performClick();
+                        }
+                    });
+
+                    chatContainer.addView(aiView);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        drawerLayout.closeDrawer(GravityCompat.START);
+        scrollToBottom();
+    }
+}
+==> app/src/main/keepRules/rules.keep <==
+# Add project specific R8 rules here.
+# AGP will combine all keep rule files in src/main/keepRules to pass to R8
+#
+# For more details, see
+#   https://d.android.com/r/tools/r8/keep-rules
+
+# If your project uses WebView with JS, uncomment the following
+# and specify the fully qualified class name to the JavaScript interface
+# class:
+#-keepclassmembers class fqcn.of.javascript.interface.for.webview {
+#   public *;
+#}
+==> app/src/main/res/drawable-v24/ic_launcher_foreground.xml <==
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <path android:pathData="M31,63.928c0,0 6.4,-11 12.1,-13.1c7.2,-2.6 26,-1.4 26,-1.4l38.1,38.1L107,108.928l-32,-1L31,63.928z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:endX="85.84757"
+                android:endY="92.4963"
+                android:startX="42.9492"
+                android:startY="49.59793"
+                android:type="linear">
+                <item
+                    android:color="#44000000"
+                    android:offset="0.0" />
+                <item
+                    android:color="#00000000"
+                    android:offset="1.0" />
+            </gradient>
+        </aapt:attr>
+    </path>
+    <path
+        android:fillColor="#FFFFFF"
+        android:fillType="nonZero"
+        android:pathData="M65.3,45.828l3.8,-6.6c0.2,-0.4 0.1,-0.9 -0.3,-1.1c-0.4,-0.2 -0.9,-0.1 -1.1,0.3l-3.9,6.7c-6.3,-2.8 -13.4,-2.8 -19.7,0l-3.9,-6.7c-0.2,-0.4 -0.7,-0.5 -1.1,-0.3C38.8,38.328 38.7,38.828 38.9,39.228l3.8,6.6C36.2,49.428 31.7,56.028 31,63.928h46C76.3,56.028 71.8,49.428 65.3,45.828zM43.4,57.328c-0.8,0 -1.5,-0.5 -1.8,-1.2c-0.3,-0.7 -0.1,-1.5 0.4,-2.1c0.5,-0.5 1.4,-0.7 2.1,-0.4c0.7,0.3 1.2,1 1.2,1.8C45.3,56.528 44.5,57.328 43.4,57.328L43.4,57.328zM64.6,57.328c-0.8,0 -1.5,-0.5 -1.8,-1.2s-0.1,-1.5 0.4,-2.1c0.5,-0.5 1.4,-0.7 2.1,-0.4c0.7,0.3 1.2,1 1.2,1.8C66.5,56.528 65.6,57.328 64.6,57.328L64.6,57.328z"
+        android:strokeWidth="1"
+        android:strokeColor="#00000000" />
+</vector>
+==> app/src/main/res/drawable/ai_bubble.xml <==
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="#E7E0EC" />
+    <corners android:radius="20dp" />
+</shape>
+==> app/src/main/res/drawable/ic_add.xml <==
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp" android:height="24dp"
+    android:viewportWidth="24" android:viewportHeight="24">
+    <path android:fillColor="#FFFFFF" android:pathData="M19,13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+</vector>
+==> app/src/main/res/drawable/ic_copy.xml <==
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp" android:height="24dp" android:viewportWidth="24" android:viewportHeight="24">
+    <path android:fillColor="#FFFFFF" android:pathData="M16,1H4C2.9,1 2,1.9 2,3v14h2V3h12V1zM19,5H8C6.9,5 6,5.9 6,7v14c0,1.1 0.9,2 2,2h11c1.1,0 2,-0.9 2,-2V7C21,5.9 20.1,5 19,5zM19,21H8V7h11V21z"/>
+</vector>
+==> app/src/main/res/drawable/ic_edit.xml <==
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp" android:height="24dp"
+    android:viewportWidth="24" android:viewportHeight="24">
+    <path android:fillColor="#FFFFFF" android:pathData="M3,17.25V21h3.75L17.81,9.94l-3.75,-3.75L3,17.25zM20.71,7.04c0.39,-0.39 0.39,-1.02 0,-1.41l-2.34,-2.34c-0.39,-0.39 -1.02,-0.39 -1.41,0l-1.83,1.83 3.75,3.75 1.83,-1.83z"/>
+</vector>
+==> app/src/main/res/drawable/ic_launcher_background.xml <==
+<?xml version="1.0" encoding="utf-8"?>
+<vector
+    android:height="108dp"
+    android:width="108dp"
+    android:viewportHeight="108"
+    android:viewportWidth="108"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <path android:fillColor="#3DDC84"
+          android:pathData="M0,0h108v108h-108z"/>
+    <path android:fillColor="#00000000" android:pathData="M9,0L9,108"
+          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
+    <path android:fillColor="#00000000" android:pathData="M19,0L19,108"
+          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
+    <path android:fillColor="#00000000" android:pathData="M29,0L29,108"
+          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
+    <path android:fillColor="#00000000" android:pathData="M39,0L39,108"
+          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
+    <path android:fillColor="#00000000" android:pathData="M49,0L49,108"
+          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
+    <path android:fillColor="#00000000" android:pathData="M59,0L59,108"
+          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
+    <path android:fillColor="#00000000" android:pathData="M69,0L69,108"
+          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
+    <path android:fillColor="#00000000" android:pathData="M79,0L79,108"
+          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
+    <path android:fillColor="#00000000" android:pathData="M89,0L89,108"
+          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
+    <path android:fillColor="#00000000" android:pathData="M99,0L99,108"
+          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
+    <path android:fillColor="#00000000" android:pathData="M0,9L108,9"
+          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
+    <path android:fillColor="#00000000" android:pathData="M0,19L108,19"
+          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
+    <path android:fillColor="#00000000" android:pathData="M0,29L108,29"
+          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
+    <path android:fillColor="#00000000" android:pathData="M0,39L108,39"
+          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
+    <path android:fillColor="#00000000" android:pathData="M0,49L108,49"
+          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
+    <path android:fillColor="#00000000" android:pathData="M0,59L108,59"
+          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
+    <path android:fillColor="#00000000" android:pathData="M0,69L108,69"
+          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
+    <path android:fillColor="#00000000" android:pathData="M0,79L108,79"
+          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
+    <path android:fillColor="#00000000" android:pathData="M0,89L108,89"
+          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
+    <path android:fillColor="#00000000" android:pathData="M0,99L108,99"
+          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
+    <path android:fillColor="#00000000" android:pathData="M19,29L89,29"
+          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
+    <path android:fillColor="#00000000" android:pathData="M19,39L89,39"
+          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
+    <path android:fillColor="#00000000" android:pathData="M19,49L89,49"
+          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
+    <path android:fillColor="#00000000" android:pathData="M19,59L89,59"
+          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
+    <path android:fillColor="#00000000" android:pathData="M19,69L89,69"
+          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
+    <path android:fillColor="#00000000" android:pathData="M19,79L89,79"
+          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
+    <path android:fillColor="#00000000" android:pathData="M29,19L29,89"
+          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
+    <path android:fillColor="#00000000" android:pathData="M39,19L39,89"
+          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
+    <path android:fillColor="#00000000" android:pathData="M49,19L49,89"
+          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
+    <path android:fillColor="#00000000" android:pathData="M59,19L59,89"
+          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
+    <path android:fillColor="#00000000" android:pathData="M69,19L69,89"
+          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
+    <path android:fillColor="#00000000" android:pathData="M79,19L79,89"
+          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
+</vector>
+
+==> app/src/main/res/drawable/ic_menu.xml <==
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp" android:height="24dp"
+    android:viewportWidth="24" android:viewportHeight="24">
+    <path android:fillColor="#FFFFFF" android:pathData="M3,18h18v-2H3v2zM3,13h18v-2H3v2zM3,6v2h18V6H3z"/>
+</vector>
+==> app/src/main/res/drawable/ic_mic.xml <==
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp" android:height="24dp"
+    android:viewportWidth="24" android:viewportHeight="24">
+    <path android:fillColor="#FFFFFF" android:pathData="M12,14c1.66,0 3,-1.34 3,-3V5c0,-1.66 -1.34,-3 -3,-3S9,3.34 9,5v6C9,12.66 10.34,14 12,14zM17,11c0,2.76 -2.24,5 -5,5s-5,-2.24 -5,-5H5c0,3.53 2.61,6.43 6,6.92V21h2v-3.08c3.39,-0.49 6,-3.39 6,-6.92H17z"/>
+</vector>
+==> app/src/main/res/drawable/ic_pin.xml <==
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp" android:height="24dp" android:viewportWidth="24" android:viewportHeight="24">
+    <path android:fillColor="#FFFFFF" android:pathData="M16,12V4H17V2H7V4H8V12L6,14V16H11.2V22H12.8V16H18V14L16,12Z"/>
+</vector>
+==> app/src/main/res/drawable/ic_redo.xml <==
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp" android:height="24dp" android:viewportWidth="24" android:viewportHeight="24">
+    <path android:fillColor="#FFFFFF" android:pathData="M17.65,6.35C16.2,4.9 14.21,4 12,4c-4.42,0 -7.99,3.58 -7.99,8s3.57,8 7.99,8c3.73,0 6.84,-2.55 7.73,-6h-2.08c-0.82,2.33 -3.04,4 -5.65,4 -3.31,0 -6,-2.69 -6,-6s2.69,-6 6,-6c1.66,0 3.14,0.69 4.22,1.78L13,11h7V4l-2.35,2.35z"/>
+</vector>
+==> app/src/main/res/drawable/input_background.xml <==
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
+    <solid android:color="#2A2A2E" />
+    <stroke android:width="1dp" android:color="#444444" />
+    <corners android:radius="28dp" />
+</shape>
+==> app/src/main/res/drawable/send_circle.xml <==
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+    <solid android:color="#6750A4" />
+</shape>
+==> app/src/main/res/drawable/user_bubble.xml <==
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="#6750A4" />
+    <corners android:radius="20dp" />
+</shape>
+==> app/src/main/res/layout/activity_main.xml <==
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/drawerLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#121212">
+
+    <RelativeLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/topContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_alignParentTop="true"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingTop="16dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="12dp">
+
+                <ImageButton
+                    android:id="@+id/menuButton"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentStart="true"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:src="@drawable/ic_menu"
+                    app:tint="#FFFFFF" />
+
+                <TextView
+                    android:id="@+id/titleText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="OmewGPT"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <ImageButton
+                    android:id="@+id/newChatButton"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentEnd="true"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:src="@drawable/ic_edit"
+                    app:tint="#FFFFFF" />
+            </RelativeLayout>
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/tempChatSwitch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="Temporary Chat  "
+                android:textColor="#AAAAAA"
+                android:textSize="14sp"
+                android:layout_marginBottom="8dp"/>
+
+            <LinearLayout
+                android:id="@+id/pinnedContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone"
+                android:layout_marginBottom="4dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:background="@drawable/input_background"
+                    android:padding="12dp"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/ic_pin"
+                        app:tint="#6750A4"/>
+
+                    <TextView
+                        android:id="@+id/pinnedText"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginEnd="12dp"
+                        android:textColor="#FFFFFF"
+                        android:textSize="14sp"
+                        android:maxLines="2"
+                        android:ellipsize="end" />
+
+                    <ImageButton
+                        android:id="@+id/unpinButton"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:src="@drawable/ic_add"
+                        android:rotation="45"
+                        app:tint="#888888" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="8dp"
+                    android:background="#333333" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <ScrollView
+            android:id="@+id/chatScroll"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/topContainer"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="90dp"
+            android:clipToPadding="false">
+
+            <LinearLayout
+                android:id="@+id/chatContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+            </LinearLayout>
+        </ScrollView>
+
+        <LinearLayout
+            android:id="@+id/welcomeScreen"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/topContainer"
+            android:layout_above="@+id/bottomInputArea"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="32dp">
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/ic_cat"
+                android:layout_marginBottom="16dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Meet Omew, lemme hear your thoughts nyaaa~..."
+                android:textColor="#FFFFFF"
+                android:textSize="22sp"
+                android:textAlignment="center"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/bottomInputArea"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="vertical"
+            android:gravity="bottom"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:clipChildren="false">
+
+            <LinearLayout
+                android:id="@+id/imagePreviewContainer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                android:background="@drawable/input_background"
+                android:padding="8dp"
+                android:layout_marginBottom="8dp"
+                android:gravity="top">
+
+                <ImageView
+                    android:id="@+id/imagePreview"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:scaleType="centerCrop"
+                    android:background="#333333" />
+
+                <ImageButton
+                    android:id="@+id/removeImageButton"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginStart="8dp"
+                    android:src="@drawable/ic_add"
+                    android:rotation="45"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    app:tint="#888888" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@drawable/input_background"
+                android:gravity="bottom"
+                android:padding="6dp">
+
+                <ImageButton
+                    android:id="@+id/attachButton"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginBottom="4dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:src="@drawable/ic_add"
+                    app:tint="#FFFFFF" />
+
+                <EditText
+                    android:id="@+id/messageInput"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="Ask anything..."
+                    android:textColorHint="#888888"
+                    android:textColor="#FFFFFF"
+                    android:inputType="textMultiLine"
+                    android:maxLines="4"
+                    android:minHeight="48dp"
+                    android:background="@null"
+                    android:textSize="16sp"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    android:paddingTop="12dp"
+                    android:paddingBottom="12dp"
+                    android:layout_gravity="center_vertical" />
+
+                <ImageButton
+                    android:id="@+id/micButton"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginBottom="4dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:src="@drawable/ic_mic"
+                    app:tint="#FFFFFF" />
+
+                <Button
+                    android:id="@+id/sendButton"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="@drawable/send_circle"
+                    android:text="➤"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20sp"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    app:backgroundTint="@null"
+                    android:padding="0dp" />
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="#171717"
+        android:orientation="vertical"
+        android:paddingTop="56dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="16dp">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/pinnedHeader"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Pinned"
+                    android:textColor="#888888"
+                    android:textSize="14sp"
+                    android:layout_marginBottom="8dp"
+                    android:visibility="gone" />
+
+                <LinearLayout
+                    android:id="@+id/pinnedHistoryContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginBottom="16dp">
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/historySeparator"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#333333"
+                    android:layout_marginBottom="16dp"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Recents"
+                    android:textColor="#888888"
+                    android:textSize="14sp"
+                    android:layout_marginBottom="8dp" />
+
+                <LinearLayout
+                    android:id="@+id/historyContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+</androidx.drawerlayout.widget.DrawerLayout>
+==> app/src/main/res/layout/ai_message.xml <==
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="start"
+    android:layout_marginTop="4dp"
+    android:layout_marginBottom="8dp">
+
+    <!-- Phase 5: A container inside the bubble -->
+    <LinearLayout
+        android:id="@+id/bubbleContentContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/ai_bubble"
+        android:layout_marginEnd="40dp"
+        android:padding="14dp">
+
+        <TextView
+            android:id="@+id/messageText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxWidth="300dp"
+            android:textSize="17sp"
+            android:textColor="#000000" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/actionRow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="2dp"
+        android:layout_marginStart="4dp">
+
+        <ImageButton
+            android:id="@+id/btnPin"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_pin"
+            app:tint="#888888"
+            android:padding="8dp"
+            android:scaleType="fitCenter" />
+
+        <ImageButton
+            android:id="@+id/btnRedo"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_redo"
+            app:tint="#888888"
+            android:padding="8dp"
+            android:scaleType="fitCenter" />
+
+        <ImageButton
+            android:id="@+id/btnCopyAi"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_copy"
+            app:tint="#888888"
+            android:padding="8dp"
+            android:scaleType="fitCenter" />
+    </LinearLayout>
+</LinearLayout>
+==> app/src/main/res/layout/sidebar_item.xml <==
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingTop="12dp"
+    android:paddingBottom="12dp"
+    android:gravity="center_vertical"
+    android:background="?attr/selectableItemBackground">
+
+    <TextView
+        android:id="@+id/sidebarTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        android:maxLines="1"
+        android:ellipsize="end" />
+
+    <ImageButton
+        android:id="@+id/sidebarPinBtn"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:src="@drawable/ic_pin"
+        app:tint="#888888"
+        android:scaleType="fitCenter" />
+</LinearLayout>
+==> app/src/main/res/layout/step_item.xml <==
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingTop="6dp"
+    android:paddingBottom="6dp">
+
+    <!-- The Circle and Line -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:layout_marginEnd="12dp">
+
+        <TextView
+            android:id="@+id/stepNumber"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:background="@drawable/send_circle"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp"
+            android:gravity="center"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="2dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="#6750A4"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:alpha="0.5"/>
+    </LinearLayout>
+
+    <!-- The Text Content -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/stepTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="2dp"/>
+
+        <TextView
+            android:id="@+id/stepBody"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#333333"
+            android:textSize="15sp" />
+    </LinearLayout>
+</LinearLayout>
+==> app/src/main/res/layout/system_message.xml <==
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/messageText"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:padding="8dp"
+    android:textSize="12sp"
+    android:textColor="#888888"
+    android:textAlignment="center"
+    android:layout_marginTop="12dp"
+    android:layout_marginBottom="12dp" />
+==> app/src/main/res/layout/thinking_bubble.xml <==
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:layout_marginTop="8dp"
+    android:layout_marginBottom="8dp"
+    android:background="@android:color/transparent">
+
+    <ImageView
+        android:id="@+id/thinkingGif"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginEnd="12dp" />
+
+    <TextView
+        android:id="@+id/thinkingText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textStyle="italic" />
+</LinearLayout>
+==> app/src/main/res/layout/user_message.xml <==
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="end"
+    android:layout_marginTop="4dp"
+    android:layout_marginBottom="8dp">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/user_bubble"
+        android:layout_marginStart="40dp"
+        android:padding="12dp">
+
+        <!-- Rounded Image Preview -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/messageImageCard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:visibility="gone"
+            app:cardCornerRadius="12dp"
+            app:cardBackgroundColor="@android:color/transparent"
+            app:cardElevation="0dp">
+
+            <ImageView
+                android:id="@+id/messageImage"
+                android:layout_width="220dp"
+                android:layout_height="220dp"
+                android:scaleType="centerCrop" />
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/messageText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxWidth="300dp"
+            android:textSize="17sp"
+            android:textColor="#FFFFFF" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="4dp">
+
+        <ImageButton
+            android:id="@+id/btnEdit"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_edit"
+            app:tint="#888888"
+            android:padding="8dp"
+            android:scaleType="fitCenter" />
+
+        <ImageButton
+            android:id="@+id/btnCopyUser"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_copy"
+            app:tint="#888888"
+            android:padding="8dp"
+            android:scaleType="fitCenter" />
+    </LinearLayout>
+</LinearLayout>
+==> app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml <==
+<?xml version="1.0" encoding="utf-8"?>
+<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
+    <background android:drawable="@drawable/ic_launcher_background"/>
+    <foreground android:drawable="@mipmap/ic_launcher_foreground"/>
+    <monochrome android:drawable="@mipmap/ic_launcher_foreground"/>
+</adaptive-icon>
+==> app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml <==
+<?xml version="1.0" encoding="utf-8"?>
+<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
+    <background android:drawable="@drawable/ic_launcher_background"/>
+    <foreground android:drawable="@mipmap/ic_launcher_foreground"/>
+    <monochrome android:drawable="@mipmap/ic_launcher_foreground"/>
+</adaptive-icon>
+==> app/src/main/res/values-night/themes.xml <==
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.MyApplication" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your dark theme here. -->
+        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+    </style>
+</resources>
+==> app/src/main/res/values/colors.xml <==
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+</resources>
+==> app/src/main/res/values/strings.xml <==
+<resources>
+    <string name="app_name">OmewGPT</string>
+</resources>
+==> app/src/main/res/values/themes.xml <==
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.MyApplication" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    </style>
+
+    <style name="Theme.MyApplication" parent="Base.Theme.MyApplication" />
+</resources>
+==> app/src/main/res/xml/backup_rules.xml <==
+<?xml version="1.0" encoding="utf-8"?><!--
+   Sample backup rules file; uncomment and customize as necessary.
+   See https://developer.android.com/guide/topics/data/autobackup
+   for details.
+   Note: This file is ignored for devices older than API 31
+   See https://developer.android.com/about/versions/12/backup-restore
+-->
+<full-backup-content>
+    <!--
+   <include domain="sharedpref" path="."/>
+   <exclude domain="sharedpref" path="device.xml"/>
+-->
+</full-backup-content>
+==> app/src/main/res/xml/data_extraction_rules.xml <==
+<?xml version="1.0" encoding="utf-8"?><!--
+   Sample data extraction rules file; uncomment and customize as necessary.
+   See https://developer.android.com/about/versions/12/backup-restore#xml-changes
+   for details.
+-->
+<data-extraction-rules>
+    <cloud-backup>
+        <!-- TODO: Use <include> and <exclude> to control what is backed up.
+        <include .../>
+        <exclude .../>
+        -->
+    </cloud-backup>
+    <!--
+    <device-transfer>
+        <include .../>
+        <exclude .../>
+    </device-transfer>
+    -->
+</data-extraction-rules>
+==> app/src/test/java/com/example/myapplication/ExampleUnitTest.kt <==
+package com.example.myapplication
+
+import org.junit.Test
+
+import org.junit.Assert.*
+
+/**
+ * Example local unit test, which will execute on the development machine (host).
+ *
+ * See [testing documentation](http://d.android.com/tools/testing).
+ */
+class ExampleUnitTest {
+    @Test
+    fun addition_isCorrect() {
+        assertEquals(4, 2 + 2)
+    }
+}
+==> build.gradle.kts <==
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+plugins {
+    alias(libs.plugins.android.application) apply false
+}
+==> gradle.properties <==
+# Project-wide Gradle settings.
+# IDE (e.g. Android Studio) users:
+# Gradle settings configured through the IDE *will override*
+# any settings specified in this file.
+# For more details on how to configure your build environment visit
+# http://www.gradle.org/docs/current/userguide/build_environment.html
+# Specifies the JVM arguments used for the daemon process.
+# The setting is particularly useful for tweaking memory settings.
+org.gradle.jvmargs=-Xmx2048m -Dfile.encoding=UTF-8
+# When configured, Gradle will run in incubating parallel mode.
+# This option should only be used with decoupled projects. For more details, visit
+# https://developer.android.com/r/tools/gradle-multi-project-decoupled-projects
+# org.gradle.parallel=true
+# When enabled, the Configuration Cache allows Gradle to skip the configuration
+# phase entirely if nothing that affects the build configuration (such as build scripts)
+# has changed. Additionally, Gradle applies performance optimizations to task execution.
+org.gradle.configuration-cache=true
+# Kotlin code style for this project: "official" or "obsolete":
+kotlin.code.style=official
+==> gradle/gradle-daemon-jvm.properties <==
+#This file is generated by updateDaemonJvm
+toolchainUrl.FREE_BSD.AARCH64=https\://api.foojay.io/disco/v3.0/ids/cf726b4a1c84b50457225f9bba6d7650/redirect
+toolchainUrl.FREE_BSD.X86_64=https\://api.foojay.io/disco/v3.0/ids/fa1e318c287360478e3c83a9a3ef1007/redirect
+toolchainUrl.LINUX.AARCH64=https\://api.foojay.io/disco/v3.0/ids/cf726b4a1c84b50457225f9bba6d7650/redirect
+toolchainUrl.LINUX.X86_64=https\://api.foojay.io/disco/v3.0/ids/fa1e318c287360478e3c83a9a3ef1007/redirect
+toolchainUrl.MAC_OS.AARCH64=https\://api.foojay.io/disco/v3.0/ids/c2dd35c9d0aaf0ba6ad0791320f99dfc/redirect
+toolchainUrl.MAC_OS.X86_64=https\://api.foojay.io/disco/v3.0/ids/e5810bd7fd1f8a586644409d395a7e55/redirect
+toolchainUrl.UNIX.AARCH64=https\://api.foojay.io/disco/v3.0/ids/cf726b4a1c84b50457225f9bba6d7650/redirect
+toolchainUrl.UNIX.X86_64=https\://api.foojay.io/disco/v3.0/ids/fa1e318c287360478e3c83a9a3ef1007/redirect
+toolchainUrl.WINDOWS.AARCH64=https\://api.foojay.io/disco/v3.0/ids/7b3c4877c0749019e6805bb61e421497/redirect
+toolchainUrl.WINDOWS.X86_64=https\://api.foojay.io/disco/v3.0/ids/d76df094a9cbbabd3b08251f9e61444a/redirect
+toolchainVersion=25
+
+==> gradle/libs.versions.toml <==
+[versions]
+agp = "9.4.1"
+coreKtx = "1.19.0"
+junit = "4.13.2"
+junitVersion = "1.3.0"
+espressoCore = "3.7.0"
+appcompat = "1.8.0"
+material = "1.14.0"
+activityKtx = "1.13.0"
+constraintlayout = "2.2.2"
+
+[libraries]
+androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
+androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+androidx-activity-ktx = { group = "androidx.activity", name = "activity-ktx", version.ref = "activityKtx" }
+androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp" }
+
+
+==> gradle/wrapper/gradle-wrapper.properties <==
+#Tue Sep 22 20:10:00 GMT+06:00 2026
+distributionBase=GRADLE_USER_HOME
+distributionPath=wrapper/dists
+distributionSha256Sum=bbaeb2fef8710818cf0e261201dab964c572f92b942812df0c3620d62a529a01
+distributionUrl=https\://services.gradle.org/distributions/gradle-9.6.0-bin.zip
+networkTimeout=10000
+validateDistributionUrl=true
+zipStoreBase=GRADLE_USER_HOME
+zipStorePath=wrapper/dists
+
+==> gradlew <==
+#!/bin/sh
+
+#
+# Copyright © 2015 the original authors.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      https://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+##############################################################################
+#
+#   Gradle start up script for POSIX generated by Gradle.
+#
+#   Important for running:
+#
+#   (1) You need a POSIX-compliant shell to run this script. If your /bin/sh is
+#       noncompliant, but you have some other compliant shell such as ksh or
+#       bash, then to run this script, type that shell name before the whole
+#       command line, like:
+#
+#           ksh Gradle
+#
+#       Busybox and similar reduced shells will NOT work, because this script
+#       requires all of these POSIX shell features:
+#         * functions;
+#         * expansions «$var», «${var}», «${var:-default}», «${var+SET}»,
+#           «${var#prefix}», «${var%suffix}», and «$( cmd )»;
+#         * compound commands having a testable exit status, especially «case»;
+#         * various built-in commands including «command», «set», and «ulimit».
+#
+#   Important for patching:
+#
+#   (2) This script targets any POSIX shell, so it avoids extensions provided
+#       by Bash, Ksh, etc; in particular arrays are avoided.
+#
+#       The "traditional" practice of packing multiple parameters into a
+#       space-separated string is a well documented source of bugs and security
+#       problems, so this is (mostly) avoided, by progressively accumulating
+#       options in "$@", and eventually passing that to Java.
+#
+#       Where the inherited environment variables (DEFAULT_JVM_OPTS, JAVA_OPTS,
+#       and GRADLE_OPTS) rely on word-splitting, this is performed explicitly;
+#       see the in-line comments for details.
+#
+#       There are tweaks for specific operating systems such as AIX, CygWin,
+#       Darwin, MinGW, and NonStop.
+#
+#   (3) This script is generated from the Groovy template
+#       https://github.com/gradle/gradle/blob/HEAD/platforms/jvm/plugins-application/src/main/resources/org/gradle/api/internal/plugins/unixStartScript.txt
+#       within the Gradle project.
+#
+#       You can find Gradle at https://github.com/gradle/gradle/.
+#
+##############################################################################
+
+# Attempt to set APP_HOME
+
+# Resolve links: $0 may be a link
+app_path=$0
+
+# Need this for daisy-chained symlinks.
+while
+    APP_HOME=${app_path%"${app_path##*/}"}  # leaves a trailing /; empty if no leading path
+    [ -h "$app_path" ]
+do
+    ls=$( ls -ld "$app_path" )
+    link=${ls#*' -> '}
+    case $link in             #(
+      /*)   app_path=$link ;; #(
+      *)    app_path=$APP_HOME$link ;;
+    esac
+done
+
+# This is normally unused
+# shellcheck disable=SC2034
+APP_BASE_NAME=${0##*/}
+# Discard cd standard output in case $CDPATH is set (https://github.com/gradle/gradle/issues/25036)
+APP_HOME=$( cd -P "${APP_HOME:-./}" > /dev/null && printf '%s\n' "$PWD" ) || exit
+
+# Use the maximum available, or set MAX_FD != -1 to use that value.
+MAX_FD=maximum
+
+warn () {
+    echo "$*"
+} >&2
+
+die () {
+    echo
+    echo "$*"
+    echo
+    exit 1
+} >&2
+
+# OS specific support (must be 'true' or 'false').
+cygwin=false
+msys=false
+darwin=false
+nonstop=false
+case "$( uname )" in                #(
+  CYGWIN* )         cygwin=true  ;; #(
+  Darwin* )         darwin=true  ;; #(
+  MSYS* | MINGW* )  msys=true    ;; #(
+  NONSTOP* )        nonstop=true ;;
+esac
+
+CLASSPATH="\\\"\\\""
+
+
+# Determine the Java command to use to start the JVM.
+if [ -n "$JAVA_HOME" ] ; then
+    if [ -x "$JAVA_HOME/jre/sh/java" ] ; then
+        # IBM's JDK on AIX uses strange locations for the executables
+        JAVACMD=$JAVA_HOME/jre/sh/java
+    else
+        JAVACMD=$JAVA_HOME/bin/java
+    fi
+    if [ ! -x "$JAVACMD" ] ; then
+        die "ERROR: JAVA_HOME is set to an invalid directory: $JAVA_HOME
+
+Please set the JAVA_HOME variable in your environment to match the
+location of your Java installation."
+    fi
+else
+    JAVACMD=java
+    if ! command -v java >/dev/null 2>&1
+    then
+        die "ERROR: JAVA_HOME is not set and no 'java' command could be found in your PATH.
+
+Please set the JAVA_HOME variable in your environment to match the
+location of your Java installation."
+    fi
+fi
+
+# Increase the maximum file descriptors if we can.
+if ! "$cygwin" && ! "$darwin" && ! "$nonstop" ; then
+    case $MAX_FD in #(
+      max*)
+        # In POSIX sh, ulimit -H is undefined. That's why the result is checked to see if it worked.
+        # shellcheck disable=SC2039,SC3045
+        MAX_FD=$( ulimit -H -n ) ||
+            warn "Could not query maximum file descriptor limit"
+    esac
+    case $MAX_FD in  #(
+      '' | soft) :;; #(
+      *)
+        # In POSIX sh, ulimit -n is undefined. That's why the result is checked to see if it worked.
+        # shellcheck disable=SC2039,SC3045
+        ulimit -n "$MAX_FD" ||
+            warn "Could not set maximum file descriptor limit to $MAX_FD"
+    esac
+fi
+
+# Collect all arguments for the java command, stacking in reverse order:
+#   * args from the command line
+#   * the main class name
+#   * -classpath
+#   * -D...appname settings
+#   * --module-path (only if needed)
+#   * DEFAULT_JVM_OPTS, JAVA_OPTS, and GRADLE_OPTS environment variables.
+
+# For Cygwin or MSYS, switch paths to Windows format before running java
+if "$cygwin" || "$msys" ; then
+    APP_HOME=$( cygpath --path --mixed "$APP_HOME" )
+    CLASSPATH=$( cygpath --path --mixed "$CLASSPATH" )
+
+    JAVACMD=$( cygpath --unix "$JAVACMD" )
+
+    # Now convert the arguments - kludge to limit ourselves to /bin/sh
+    for arg do
+        if
+            case $arg in                                #(
+              -*)   false ;;                            # don't mess with options #(
+              /?*)  t=${arg#/} t=/${t%%/*}              # looks like a POSIX filepath
+                    [ -e "$t" ] ;;                      #(
+              *)    false ;;
+            esac
+        then
+            arg=$( cygpath --path --ignore --mixed "$arg" )
+        fi
+        # Roll the args list around exactly as many times as the number of
+        # args, so each arg winds up back in the position where it started, but
+        # possibly modified.
+        #
+        # NB: a `for` loop captures its iteration list before it begins, so
+        # changing the positional parameters here affects neither the number of
+        # iterations, nor the values presented in `arg`.
+        shift                   # remove old arg
+        set -- "$@" "$arg"      # push replacement arg
+    done
+fi
+
+
+# Add default JVM options here. You can also use JAVA_OPTS and GRADLE_OPTS to pass JVM options to this script.
+DEFAULT_JVM_OPTS='"-Xmx64m" "-Xms64m"'
+
+# Collect all arguments for the java command:
+#   * DEFAULT_JVM_OPTS, JAVA_OPTS, and optsEnvironmentVar are not allowed to contain shell fragments,
+#     and any embedded shellness will be escaped.
+#   * For example: A user cannot expect ${Hostname} to be expanded, as it is an environment variable and will be
+#     treated as '${Hostname}' itself on the command line.
+
+set -- \
+        "-Dorg.gradle.appname=$APP_BASE_NAME" \
+        -classpath "$CLASSPATH" \
+        -jar "$APP_HOME/gradle/wrapper/gradle-wrapper.jar" \
+        "$@"
+
+# Stop when "xargs" is not available.
+if ! command -v xargs >/dev/null 2>&1
+then
+    die "xargs is not available"
+fi
+
+# Use "xargs" to parse quoted args.
+#
+# With -n1 it outputs one arg per line, with the quotes and backslashes removed.
+#
+# In Bash we could simply go:
+#
+#   readarray ARGS < <( xargs -n1 <<<"$var" ) &&
+#   set -- "${ARGS[@]}" "$@"
+#
+# but POSIX shell has neither arrays nor command substitution, so instead we
+# post-process each arg (as a line of input to sed) to backslash-escape any
+# character that might be a shell metacharacter, then use eval to reverse
+# that process (while maintaining the separation between arguments), and wrap
+# the whole thing up as a single "set" statement.
+#
+# This will of course break if any of these variables contains a newline or
+# an unmatched quote.
+#
+
+eval "set -- $(
+        printf '%s\n' "$DEFAULT_JVM_OPTS $JAVA_OPTS $GRADLE_OPTS" |
+        xargs -n1 |
+        sed ' s~[^-[:alnum:]+,./:=@_]~\\&~g; ' |
+        tr '\n' ' '
+    )" '"$@"'
+
+exec "$JAVACMD" "$@"
+
+==> gradlew.bat <==
+@rem
+@rem Copyright 2015 the original author or authors.
+@rem
+@rem Licensed under the Apache License, Version 2.0 (the "License");
+@rem you may not use this file except in compliance with the License.
+@rem You may obtain a copy of the License at
+@rem
+@rem      https://www.apache.org/licenses/LICENSE-2.0
+@rem
+@rem Unless required by applicable law or agreed to in writing, software
+@rem distributed under the License is distributed on an "AS IS" BASIS,
+@rem WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+@rem See the License for the specific language governing permissions and
+@rem limitations under the License.
+@rem
+@rem SPDX-License-Identifier: Apache-2.0
+@rem
+
+@if "%DEBUG%"=="" @echo off
+@rem ##########################################################################
+@rem
+@rem  Gradle startup script for Windows
+@rem
+@rem ##########################################################################
+
+@rem Set local scope for the variables with windows NT shell
+if "%OS%"=="Windows_NT" setlocal
+
+set DIRNAME=%~dp0
+if "%DIRNAME%"=="" set DIRNAME=.
+@rem This is normally unused
+set APP_BASE_NAME=%~n0
+set APP_HOME=%DIRNAME%
+
+@rem Resolve any "." and ".." in APP_HOME to make it shorter.
+for %%i in ("%APP_HOME%") do set APP_HOME=%%~fi
+
+@rem Add default JVM options here. You can also use JAVA_OPTS and GRADLE_OPTS to pass JVM options to this script.
+set DEFAULT_JVM_OPTS="-Xmx64m" "-Xms64m"
+
+@rem Find java.exe
+if defined JAVA_HOME goto findJavaFromJavaHome
+
+set JAVA_EXE=java.exe
+%JAVA_EXE% -version >NUL 2>&1
+if %ERRORLEVEL% equ 0 goto execute
+
+echo. 1>&2
+echo ERROR: JAVA_HOME is not set and no 'java' command could be found in your PATH. 1>&2
+echo. 1>&2
+echo Please set the JAVA_HOME variable in your environment to match the 1>&2
+echo location of your Java installation. 1>&2
+
+goto fail
+
+:findJavaFromJavaHome
+set JAVA_HOME=%JAVA_HOME:"=%
+set JAVA_EXE=%JAVA_HOME%/bin/java.exe
+
+if exist "%JAVA_EXE%" goto execute
+
+echo. 1>&2
+echo ERROR: JAVA_HOME is set to an invalid directory: %JAVA_HOME% 1>&2
+echo. 1>&2
+echo Please set the JAVA_HOME variable in your environment to match the 1>&2
+echo location of your Java installation. 1>&2
+
+goto fail
+
+:execute
+@rem Setup the command line
+
+set CLASSPATH=
+
+
+@rem Execute Gradle
+"%JAVA_EXE%" %DEFAULT_JVM_OPTS% %JAVA_OPTS% %GRADLE_OPTS% "-Dorg.gradle.appname=%APP_BASE_NAME%" -classpath "%CLASSPATH%" -jar "%APP_HOME%\gradle\wrapper\gradle-wrapper.jar" %*
+
+:end
+@rem End local scope for the variables with windows NT shell
+if %ERRORLEVEL% equ 0 goto mainEnd
+
+:fail
+rem Set variable GRADLE_EXIT_CONSOLE if you need the _script_ return code instead of
+rem the _cmd.exe /c_ return code!
+set EXIT_CODE=%ERRORLEVEL%
+if %EXIT_CODE% equ 0 set EXIT_CODE=1
+if not ""=="%GRADLE_EXIT_CONSOLE%" exit %EXIT_CODE%
+exit /b %EXIT_CODE%
+
+:mainEnd
+if "%OS%"=="Windows_NT" endlocal
+
+:omega
+
+==> settings.gradle.kts <==
+pluginManagement {
+    repositories {
+        google {
+            content {
+                includeGroupByRegex("com\\.android.*")
+                includeGroupByRegex("com\\.google.*")
+                includeGroupByRegex("androidx.*")
+            }
+        }
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+plugins {
+    id("org.gradle.toolchains.foojay-resolver-convention") version "1.0.0"
+}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+rootProject.name = "My Application"
+include(":app")
